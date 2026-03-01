@@ -10,7 +10,26 @@
 
 @layer components {
   .liquid-glass {
-    @apply bg-glass border border-glass-border shadow-glass-drop shadow-glass-inner backdrop-blur-liquid backdrop-saturate-150 rounded-3xl;
+    @apply rounded-3xl;
+    background: rgba(255, 255, 255, 0.01);
+
+    /* The core blur and color boost */
+    backdrop-filter: blur(2px) saturate(220%) brightness(1.15) contrast(1.05);
+    -webkit-backdrop-filter: blur(2px) saturate(220%) brightness(1.15) contrast(1.05);
+
+    /* The volumetric inner shadows and chromatic dispersion */
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+      inset 15px 15px 35px -5px rgba(255, 255, 255, 0.05),
+      inset -20px -20px 35px -5px rgba(0, 20, 40, 0.05),
+      inset 15px 0 30px -5px rgba(255, 100, 100, 0.02),
+      inset -15px 0 30px -5px rgba(100, 100, 255, 0.02);
+
+    /* The physical glass edge */
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
   }
 
   .custom-scrollbar::-webkit-scrollbar {
@@ -69,26 +88,7 @@ h1 {
   line-height: 1.1;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
 
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
 
 @media (prefers-color-scheme: light) {
   :root {

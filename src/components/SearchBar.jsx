@@ -14,7 +14,7 @@ const SearchBar = () => {
     return (
         <form
             onSubmit={handleSearch}
-            className="w-4/5 h-14 liquid-glass !rounded-full flex items-center px-6 gap-4 shadow-xl focus-within:ring-2 focus-within:ring-white/50 transition-all pointer-events-auto"
+            className="w-4/5 h-14 liquid-glass !rounded-full flex items-center px-6 gap-4 shadow-xl transition-all pointer-events-auto"
         >
             <Search className="w-5 h-5 text-white/70 shrink-0" />
             <input

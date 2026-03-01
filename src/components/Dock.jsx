@@ -97,7 +97,7 @@ const Dock = () => {
             )}
 
             {/* The Dock Base */}
-            <div className="liquid-glass !rounded-[2rem] p-3 flex flex-wrap justify-center gap-3 shadow-2xl pointer-events-auto">
+            <div className="liquid-glass !rounded-2xl p-3 flex flex-wrap justify-center gap-3 shadow-2xl pointer-events-auto">
                 {shortcuts.map((shortcut) => (
                     <a
                         key={shortcut.id}

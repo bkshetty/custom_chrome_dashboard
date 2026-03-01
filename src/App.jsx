@@ -39,7 +39,7 @@ function App() {
       <GoogleAppsMenu />
 
       {/* 3. CENTER GROUP - Clock & Search Bar */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] flex flex-col items-center gap-6 w-full max-w-3xl">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[110%] flex flex-col items-center gap-6 w-full max-w-3xl">
 
         {/* The Big Center Panel (Replace this div with your <Clock /> component later) */}
         <div className="w-full h-40 liquid-glass"></div>
