@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import EdgePanelHandle from './components/EdgePanelHandle';
 import WidgetGrid from './components/WidgetGrid';
-import BookmarksList from './components/BookmarksList';
+import TodoList from './components/TodoList';
 import SearchBar from './components/SearchBar';
 import Dock from './components/Dock';
 import SettingsPopup from './components/SettingsPopup';
@@ -58,8 +58,8 @@ function App() {
       {/* 6. BOTTOM RIGHT - Settings Customization Button */}
       <SettingsPopup setBackground={handleSetBackground} />
 
-      {/* 6. BOTTOM RIGHT - List / Bookmarks */}
-      <BookmarksList />
+      {/* 6. BOTTOM RIGHT - To-Do List */}
+      <TodoList />
 
     </div>
   );

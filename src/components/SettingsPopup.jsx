@@ -63,14 +63,14 @@ const SettingsPopup = ({ setBackground }) => {
     };
 
     return (
-        <div className="absolute bottom-8 right-8 flex flex-col-reverse items-end gap-4 z-50">
+        <div className="absolute bottom-8 right-8 flex flex-col-reverse items-end gap-4 z-50 pointer-events-none">
             {/* Toggle Button */}
             <button
                 onClick={() => {
                     setIsOpen(!isOpen);
                     setShowBgMenu(false); // Reset submenu when closing
                 }}
-                className="w-12 h-12 liquid-glass !rounded-full flex items-center justify-center cursor-pointer hover:rotate-90 transition-all duration-500 shadow-xl"
+                className="w-12 h-12 liquid-glass !rounded-full flex items-center justify-center cursor-pointer hover:rotate-90 transition-all duration-500 shadow-xl pointer-events-auto"
                 title="Customize Chrome"
             >
                 <Settings className="w-5 h-5 text-white/80 hover:text-white transition-colors" />
