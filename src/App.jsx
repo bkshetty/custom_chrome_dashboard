@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import EdgePanelHandle from './components/EdgePanelHandle';
 import WidgetGrid from './components/WidgetGrid';
 import BookmarksList from './components/BookmarksList';
@@ -7,11 +7,29 @@ import Dock from './components/Dock';
 import SettingsPopup from './components/SettingsPopup';
 import GoogleAppsMenu from './components/GoogleAppsMenu';
 
+const DEFAULT_BG = "url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop')";
+
 function App() {
+  const [background, setBackground] = useState(() => {
+    const savedBg = localStorage.getItem('customChromeBackground');
+    return savedBg || DEFAULT_BG;
+  });
+
+  const handleSetBackground = (newBg) => {
+    setBackground(newBg);
+    localStorage.setItem('customChromeBackground', newBg);
+  };
+
   return (
     <div
-      className="w-screen h-screen relative overflow-hidden bg-cover bg-center transition-all duration-700"
-      style={{ backgroundImage: "url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop')" }}
+      className="w-screen h-screen relative overflow-hidden transition-all duration-700"
+      style={{
+        backgroundImage: background.startsWith('url') ? background : 'none',
+        backgroundColor: background.startsWith('url') ? 'transparent' : background,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
     >
 
       {/* 1. TOP LEFT - Edge Panel Handle & Profile Info */}
@@ -38,7 +56,7 @@ function App() {
       <Dock />
 
       {/* 6. BOTTOM RIGHT - Settings Customization Button */}
-      <SettingsPopup />
+      <SettingsPopup setBackground={handleSetBackground} />
 
       {/* 6. BOTTOM RIGHT - List / Bookmarks */}
       <BookmarksList />
