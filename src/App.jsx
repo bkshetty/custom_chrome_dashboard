@@ -5,6 +5,7 @@ import BookmarksList from './components/BookmarksList';
 import SearchBar from './components/SearchBar';
 import Dock from './components/Dock';
 import SettingsPopup from './components/SettingsPopup';
+import GoogleAppsMenu from './components/GoogleAppsMenu';
 
 function App() {
   return (
@@ -16,10 +17,8 @@ function App() {
       {/* 1. TOP LEFT - Edge Panel Handle & Profile Info */}
       <EdgePanelHandle />
 
-      {/* 2. TOP RIGHT - Settings / Profile Icon */}
-      <div className="absolute top-8 right-8 w-14 h-14 liquid-glass !rounded-2xl">
-        {/* Component goes here */}
-      </div>
+      {/* 2. TOP RIGHT - Google Apps Menu */}
+      <GoogleAppsMenu />
 
       {/* 3. CENTER GROUP - Clock & Search Bar */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] flex flex-col items-center gap-6 w-full max-w-3xl">
