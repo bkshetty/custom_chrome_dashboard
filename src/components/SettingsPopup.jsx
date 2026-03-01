@@ -64,17 +64,6 @@ const SettingsPopup = ({ setBackground }) => {
 
     return (
         <div className="absolute bottom-8 right-8 flex flex-col-reverse items-end gap-4 z-50 pointer-events-none">
-            {/* Click-away overlay */}
-            {isOpen && (
-                <div
-                    className="fixed inset-0 z-40 pointer-events-auto"
-                    onClick={() => {
-                        setIsOpen(false);
-                        setShowBgMenu(false);
-                    }}
-                />
-            )}
-
             {/* Toggle Button */}
             <button
                 onClick={() => {
