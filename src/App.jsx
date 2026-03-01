@@ -2,8 +2,9 @@ import React from 'react';
 import EdgePanelHandle from './components/EdgePanelHandle';
 import WidgetGrid from './components/WidgetGrid';
 import BookmarksList from './components/BookmarksList';
-// We will import your Clock and other components here later
-// import Clock from './components/Clock';
+import SearchBar from './components/SearchBar';
+import Dock from './components/Dock';
+import SettingsPopup from './components/SettingsPopup';
 
 function App() {
   return (
@@ -27,24 +28,18 @@ function App() {
         <div className="w-full h-40 liquid-glass"></div>
 
         {/* Pill-shaped Search Bar */}
-        <div className="w-4/5 h-14 liquid-glass !rounded-full"></div>
+        <SearchBar />
 
       </div>
 
       {/* 4. BOTTOM LEFT - Widget Grid Container */}
       <WidgetGrid />
 
-      {/* 5. BOTTOM CENTER - The Dock */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 liquid-glass !rounded-[2rem] p-3 flex gap-3">
-        {/* Mapping out 6 placeholder icons for the dock */}
-        {[...Array(6)].map((_, i) => (
-          <div
-            key={i}
-            // We don't use the full liquid-glass here, just a slight transparency so they pop against the dock's glass
-            className="w-12 h-12 bg-white/10 border border-white/20 rounded-xl hover:bg-white/20 transition-colors cursor-pointer"
-          ></div>
-        ))}
-      </div>
+      {/* 5. BOTTOM CENTER - Custom macOS-style Dock */}
+      <Dock />
+
+      {/* 6. BOTTOM RIGHT - Settings Customization Button */}
+      <SettingsPopup />
 
       {/* 6. BOTTOM RIGHT - List / Bookmarks */}
       <BookmarksList />

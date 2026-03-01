@@ -5,7 +5,7 @@ const BookmarksList = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className="absolute bottom-8 right-8 flex flex-col-reverse items-end gap-4 pointer-events-none z-10">
+        <div className="absolute bottom-28 right-8 flex flex-col-reverse items-end gap-4 pointer-events-none z-10">
             {/* Visibility Toggle Button */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
