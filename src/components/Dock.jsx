@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Plus, X } from 'lucide-react';
 
 const INITIAL_SHORTCUTS = [
@@ -8,27 +8,34 @@ const INITIAL_SHORTCUTS = [
 ];
 
 const Dock = () => {
-    const [shortcuts, setShortcuts] = useState(INITIAL_SHORTCUTS);
+    const [shortcuts, setShortcuts] = useState(() => {
+        const savedShortcuts = localStorage.getItem('customChromeDockShortcuts');
+        return savedShortcuts ? JSON.parse(savedShortcuts) : INITIAL_SHORTCUTS;
+    });
     const [isAdding, setIsAdding] = useState(false);
     const [newUrl, setNewUrl] = useState('');
     const [newName, setNewName] = useState('');
+
+    useEffect(() => {
+        localStorage.setItem('customChromeDockShortcuts', JSON.stringify(shortcuts));
+    }, [shortcuts]);
 
     const handleAddShortcut = (e) => {
         e.preventDefault();
         if (shortcuts.length >= 8 || !newUrl || !newName) return;
 
-        // Try to construct a favicon URL based on the domain
+        // Fetch a high-quality favicon using Google's S2 API
         let iconUrl = '';
         try {
             const urlObj = new URL(newUrl.startsWith('http') ? newUrl : `https://${newUrl}`);
-            iconUrl = `${urlObj.origin}/favicon.ico`;
+            iconUrl = `https://www.google.com/s2/favicons?sz=64&domain_url=${urlObj.origin}`;
         } catch {
-            iconUrl = 'https://www.google.com/favicon.ico'; // fallback
+            iconUrl = 'https://www.google.com/s2/favicons?sz=64&domain_url=google.com'; // fallback
         }
 
         const newShortcut = {
             id: Date.now().toString(),
-            name: setNewName,
+            name: newName,
             url: newUrl.startsWith('http') ? newUrl : `https://${newUrl}`,
             icon: iconUrl
         };

@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
-import { Grip, User, Search, Map, Youtube, Play, Newspaper, Mail, Video, MessageSquare, HardDrive, Calendar, Image as ImageIcon } from 'lucide-react';
+import { Grip } from 'lucide-react';
 
 const GOOGLE_APPS = [
-    { name: 'Account', url: 'https://myaccount.google.com', Icon: User, color: 'text-blue-400' },
-    { name: 'Search', url: 'https://google.com', Icon: Search, color: 'text-white' },
-    { name: 'Maps', url: 'https://maps.google.com', Icon: Map, color: 'text-green-400' },
-    { name: 'YouTube', url: 'https://youtube.com', Icon: Youtube, color: 'text-red-500' },
-    { name: 'Play', url: 'https://play.google.com', Icon: Play, color: 'text-teal-400' },
-    { name: 'News', url: 'https://news.google.com', Icon: Newspaper, color: 'text-blue-300' },
-    { name: 'Gmail', url: 'https://mail.google.com', Icon: Mail, color: 'text-red-400' },
-    { name: 'Meet', url: 'https://meet.google.com', Icon: Video, color: 'text-green-500' },
-    { name: 'Chat', url: 'https://chat.google.com', Icon: MessageSquare, color: 'text-green-400' },
-    { name: 'Drive', url: 'https://drive.google.com', Icon: HardDrive, color: 'text-yellow-400' },
-    { name: 'Calendar', url: 'https://calendar.google.com', Icon: Calendar, color: 'text-blue-500' },
-    { name: 'Photos', url: 'https://photos.google.com', Icon: ImageIcon, color: 'text-purple-400' }
+    { name: 'Account', url: 'https://myaccount.google.com', icon: 'https://ssl.gstatic.com/gb/images/a/1f.png' },
+    { name: 'Search', url: 'https://google.com', icon: 'https://www.gstatic.com/images/branding/product/1x/gsa_48dp.png' },
+    { name: 'Maps', url: 'https://maps.google.com', icon: 'https://www.gstatic.com/images/branding/product/1x/maps_48dp.png' },
+    { name: 'YouTube', url: 'https://youtube.com', icon: 'https://www.gstatic.com/images/branding/product/1x/youtube_48dp.png' },
+    { name: 'Play', url: 'https://play.google.com', icon: 'https://www.gstatic.com/images/branding/product/1x/play_48dp.png' },
+    { name: 'News', url: 'https://news.google.com', icon: 'https://www.gstatic.com/images/branding/product/1x/news_48dp.png' },
+    { name: 'Gmail', url: 'https://mail.google.com', icon: 'https://www.gstatic.com/images/branding/product/1x/gmail_48dp.png' },
+    { name: 'Meet', url: 'https://meet.google.com', icon: 'https://www.gstatic.com/images/branding/product/1x/meet_48dp.png' },
+    { name: 'Chat', url: 'https://chat.google.com', icon: 'https://www.gstatic.com/images/branding/product/1x/chat_48dp.png' },
+    { name: 'Drive', url: 'https://drive.google.com', icon: 'https://www.gstatic.com/images/branding/product/1x/drive_48dp.png' },
+    { name: 'Calendar', url: 'https://calendar.google.com', icon: 'https://www.gstatic.com/images/branding/product/1x/calendar_48dp.png' },
+    { name: 'Photos', url: 'https://photos.google.com', icon: 'https://www.gstatic.com/images/branding/product/1x/photos_48dp.png' }
 ];
 
 const GoogleAppsMenu = () => {
@@ -28,10 +28,10 @@ const GoogleAppsMenu = () => {
                     // Slight delay to allow clicks to register inside the menu
                     setTimeout(() => setIsOpen(false), 200);
                 }}
-                className={`w-12 h-12 flex items-center justify-center rounded-full transition-colors ${isOpen ? 'bg-white/20' : 'hover:bg-white/10'}`}
+                className={`w-12 h-12 liquid-glass !rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 shadow-xl group ${isOpen ? 'ring-2 ring-white/30 bg-white/10' : 'hover:bg-white/10'}`}
                 title="Google apps"
             >
-                <Grip className="w-6 h-6 text-white/90" />
+                <Grip className="w-5 h-5 text-white/80 group-hover:text-white transition-colors" />
             </button>
 
             {/* The App Grid Menu */}
@@ -46,8 +46,12 @@ const GoogleAppsMenu = () => {
                             href={app.url}
                             className="flex flex-col items-center gap-3 hover:bg-white/5 p-2 rounded-2xl transition-colors cursor-pointer group"
                         >
-                            <div className="w-14 h-14 liquid-glass !rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:bg-white/10 transition-all shadow-lg">
-                                <app.Icon className={`w-7 h-7 ${app.color}`} />
+                            <div className="w-14 h-14 liquid-glass !rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:bg-white/10 transition-all shadow-lg p-3">
+                                <img
+                                    src={app.icon}
+                                    alt={app.name}
+                                    className="w-full h-full object-contain"
+                                />
                             </div>
                             <span className="text-white/90 text-[13px] font-medium tracking-wide">
                                 {app.name}
