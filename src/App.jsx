@@ -14,6 +14,7 @@ function App() {
     const savedBg = localStorage.getItem('customChromeBackground');
     return savedBg || DEFAULT_BG;
   });
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   const handleSetBackground = (newBg) => {
     setBackground(newBg);
@@ -22,45 +23,36 @@ function App() {
 
   return (
     <div
-      className="w-screen h-screen relative overflow-hidden transition-all duration-700"
+      className="flex w-screen h-screen overflow-hidden relative"
       style={{
         backgroundImage: background.startsWith('url') ? background : 'none',
-        backgroundColor: background.startsWith('url') ? 'transparent' : background,
+        backgroundColor: background.startsWith('url') ? 'black' : background,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat'
       }}
     >
+      <div
+        className={`h-screen relative overflow-hidden transition-all duration-500 ease-in-out ${isSettingsOpen ? 'w-[calc(100vw-340px)]' : 'w-full'}`}
+      >
+        <EdgePanelHandle />
+        <GoogleAppsMenu />
 
-      {/* 1. TOP LEFT - Edge Panel Handle & Profile Info */}
-      <EdgePanelHandle />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[110%] flex flex-col items-center gap-6 w-full max-w-3xl">
+          <div className="w-full h-40 liquid-glass"></div>
+          <SearchBar />
+        </div>
 
-      {/* 2. TOP RIGHT - Google Apps Menu */}
-      <GoogleAppsMenu />
-
-      {/* 3. CENTER GROUP - Clock & Search Bar */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[110%] flex flex-col items-center gap-6 w-full max-w-3xl">
-
-        {/* The Big Center Panel (Replace this div with your <Clock /> component later) */}
-        <div className="w-full h-40 liquid-glass"></div>
-
-        {/* Pill-shaped Search Bar */}
-        <SearchBar />
-
+        <WidgetGrid />
+        <Dock />
+        <TodoList />
       </div>
 
-      {/* 4. BOTTOM LEFT - Widget Grid Container */}
-      <WidgetGrid />
-
-      {/* 5. BOTTOM CENTER - Custom macOS-style Dock */}
-      <Dock />
-
-      {/* 6. BOTTOM RIGHT - Settings Customization Button */}
-      <SettingsPopup setBackground={handleSetBackground} />
-
-      {/* 6. BOTTOM RIGHT - To-Do List */}
-      <TodoList />
-
+      <SettingsPopup
+        setBackground={handleSetBackground}
+        isOpen={isSettingsOpen}
+        setIsOpen={setIsSettingsOpen}
+      />
     </div>
   );
 }
